@@ -24,7 +24,7 @@ class ball
       if (sflag)
       {
         // move ball
-        x = x + dx; 
+        x = x + dx;
         y = y + dy;
         //background(0);
       } else

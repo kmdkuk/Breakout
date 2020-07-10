@@ -28,68 +28,68 @@ boolean dtitle[][] = new boolean[6][32];
 //breakout6*32
 int title[][] = {
   {
-    1, 1, 0, 0, 
-    0, 0, 0, 0, 
-    0, 0, 0, 0, 
-    0, 0, 0, 0, 
-    1, 0, 0, 0, 
-    0, 1, 0, 0, 
-    0, 0, 0, 0, 
+    1, 1, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    1, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 0, 0, 0,
     0, 0, 0, 0
   }
-  , 
+  ,
   {
-    1, 0, 1, 0, 
-    0, 0, 0, 0, 
-    0, 0, 0, 0, 
-    0, 0, 0, 0, 
-    1, 0, 0, 0, 
-    1, 0, 1, 0, 
-    0, 0, 0, 0, 
+    1, 0, 1, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
+    1, 0, 0, 0,
+    1, 0, 1, 0,
+    0, 0, 0, 0,
     0, 1, 0, 0
   }
-  , 
+  ,
   {
-    1, 1, 0, 0, 
-    1, 0, 1, 0, 
-    0, 1, 1, 0, 
-    0, 1, 1, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
+    1, 1, 0, 0,
+    1, 0, 1, 0,
+    0, 1, 1, 0,
+    0, 1, 1, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
     1, 1, 1, 0
   }
-  , 
+  ,
   {
-    1, 0, 1, 0, 
-    1, 1, 0, 0, 
-    1, 1, 1, 0, 
-    1, 0, 1, 0, 
-    1, 1, 0, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
+    1, 0, 1, 0,
+    1, 1, 0, 0,
+    1, 1, 1, 0,
+    1, 0, 1, 0,
+    1, 1, 0, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
     0, 1, 0, 0
   }
-  , 
+  ,
   {
-    1, 0, 1, 0, 
-    1, 0, 0, 0, 
-    1, 0, 0, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
-    1, 0, 1, 0, 
+    1, 0, 1, 0,
+    1, 0, 0, 0,
+    1, 0, 0, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
+    1, 0, 1, 0,
     0, 1, 0, 0
   }
-  , 
+  ,
   {
-    1, 1, 0, 0, 
-    1, 0, 0, 0, 
-    0, 1, 1, 0, 
-    0, 1, 1, 0, 
-    1, 0, 1, 0, 
-    0, 1, 0, 0, 
-    1, 1, 1, 0, 
+    1, 1, 0, 0,
+    1, 0, 0, 0,
+    0, 1, 1, 0,
+    0, 1, 1, 0,
+    1, 0, 1, 0,
+    0, 1, 0, 0,
+    1, 1, 1, 0,
     0, 1, 1, 0
   }
 };
@@ -97,65 +97,65 @@ int title[][] = {
 
 /*int title[][] = {
  {
- 0, 0, 0, 1, 0, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 
- 0, 0, 0, 0, 0, 0, 0, 
- 0, 0, 1, 0, 0, 0, 0, 
- 1, 0, 0, 1, 0, 0, 1, 
+ 0, 0, 0, 1, 0, 1, 0,
+ 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 1, 0, 0, 0, 0,
+ 1, 0, 0, 1, 0, 0, 1,
  0, 1, 0, 0, 0, 0, 0
  }//1
- , 
+ ,
  {
- 1, 1, 1, 1, 1, 1, 0, 
- 1, 1, 1, 1, 1, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 
- 0, 0, 1, 1, 1, 1, 0, 
- 1, 1, 1, 1, 1, 1, 1, 
+ 1, 1, 1, 1, 1, 1, 0,
+ 1, 1, 1, 1, 1, 1, 0,
+ 0, 0, 0, 0, 0, 0, 0,
+ 0, 0, 1, 1, 1, 1, 0,
+ 1, 1, 1, 1, 1, 1, 1,
  0, 1, 0, 0, 0, 0, 0
  }//2
- , 
+ ,
  {
- 0, 0, 0, 0, 0, 1, 0, 
- 1, 0, 0, 0, 0, 1, 0, 
- 0, 0, 0, 0, 0, 0, 0, 
- 0, 1, 0, 0, 0, 1, 0, 
- 0, 1, 1, 1, 1, 1, 1, 
+ 0, 0, 0, 0, 0, 1, 0,
+ 1, 0, 0, 0, 0, 1, 0,
+ 0, 0, 0, 0, 0, 0, 0,
+ 0, 1, 0, 0, 0, 1, 0,
+ 0, 1, 1, 1, 1, 1, 1,
  0, 1, 0, 0, 0, 0, 0
  }//3
- , 
+ ,
  {
- 0, 0, 0, 0, 0, 1, 0, 
- 1, 0, 0, 0, 0, 1, 0, 
- 1, 0, 1, 0, 1, 0, 0, 
- 1, 0, 0, 0, 0, 1, 0, 
- 0, 1, 0, 1, 1, 0, 1, 
+ 0, 0, 0, 0, 0, 1, 0,
+ 1, 0, 0, 0, 0, 1, 0,
+ 1, 0, 1, 0, 1, 0, 0,
+ 1, 0, 0, 0, 0, 1, 0,
+ 0, 1, 0, 1, 1, 0, 1,
  0, 1, 0, 0, 0, 0, 0
  }//4
- , 
+ ,
  {
- 0, 0, 0, 0, 1, 0, 0, 
- 1, 0, 0, 0, 0, 1, 0, 
- 1, 0, 1, 0, 1, 0, 0, 
- 0, 0, 0, 0, 1, 0, 0, 
- 0, 1, 1, 1, 1, 1, 1, 
+ 0, 0, 0, 0, 1, 0, 0,
+ 1, 0, 0, 0, 0, 1, 0,
+ 1, 0, 1, 0, 1, 0, 0,
+ 0, 0, 0, 0, 1, 0, 0,
+ 0, 1, 1, 1, 1, 1, 1,
  0, 1, 0, 0, 0, 0, 0
  }//5
- , 
+ ,
  {
- 0, 0, 0, 1, 0, 0, 0, 
- 1, 0, 0, 0, 0, 1, 0, 
- 0, 0, 0, 1, 0, 0, 0, 
- 0, 0, 0, 1, 0, 0, 0, 
- 0, 1, 0, 1, 1, 0, 1, 
+ 0, 0, 0, 1, 0, 0, 0,
+ 1, 0, 0, 0, 0, 1, 0,
+ 0, 0, 0, 1, 0, 0, 0,
+ 0, 0, 0, 1, 0, 0, 0,
+ 0, 1, 0, 1, 1, 0, 1,
  0, 1, 0, 0, 0, 1, 0
  }
- , 
+ ,
  {
- 0, 1, 1, 0, 0, 0, 0, 
- 1, 1, 1, 1, 1, 1, 0, 
- 0, 1, 1, 0, 0, 0, 0, 
- 0, 1, 1, 0, 0, 0, 0, 
- 1, 0, 1, 1, 0, 1, 1, 
+ 0, 1, 1, 0, 0, 0, 0,
+ 1, 1, 1, 1, 1, 1, 0,
+ 0, 1, 1, 0, 0, 0, 0,
+ 0, 1, 1, 0, 0, 0, 0,
+ 1, 0, 1, 1, 0, 1, 1,
  0, 0, 1, 1, 1, 0, 0
  }
  };*/
@@ -245,12 +245,12 @@ void setup() {
 
   for (int i = 0; i <3; i++)
   {
-    l[i] = new laser(); 
+    l[i] = new laser();
     ball[i] = new ball();
   }
 }
 
-void draw() 
+void draw()
 {
 
   switch(mode)
@@ -260,7 +260,7 @@ void draw()
     //boundrect();
     drawtitle();
     break;
-  case 2: 
+  case 2:
     game();
     break;
   case 3:
@@ -271,7 +271,7 @@ void draw()
   }
   /*0:titledraw
    1:titlewait
-   2:maingame   
+   2:maingame
    3:クリアー画面
    4:ゲームオーバー画面
    */
@@ -282,7 +282,7 @@ void draw()
 //基本モード変更
 void mouseClicked() {
   if (mode == 2 && !(sflag))
-  { 
+  {
     sflag = true;
     return;
   }
@@ -306,16 +306,16 @@ void mouseClicked() {
   //  switch(mode)
   //  {
   //  case 2:
-  //    for (int i = 0; i<tate; i++) 
+  //    for (int i = 0; i<tate; i++)
   //    {
-  //      for (int j = 0; j<yoko; j++) 
+  //      for (int j = 0; j<yoko; j++)
   //      {
   //        block[i][j].life = 0;
   //      }
   //    }
   //    break;
   //  }
-  if (start.Isonbutton()) 
+  if (start.Isonbutton())
   {
     mode = 2;//ゲーム画面
     setstage();
@@ -406,7 +406,7 @@ void drawback()
 
 //タイトル生成
 void drawtitle()
-{ 
+{
   dnow++;
   dtitle[dnow % 6][(dnow/7) % 32] = true;
 
@@ -591,7 +591,7 @@ void clear()
   {
     text("Conglaturation!!", width/2, 100);
     totitle.update();
-  }  
+  }
   textAlign(LEFT);
 }
 
@@ -632,7 +632,7 @@ int checkHitBlock(int i, int j, int k) {
   if ((ball[k].x + ball[k].w/2 <= left) ||
     (ball[k].x - ball[k].w/2 >= right) ||
     (ball[k].y + ball[k].h/2 <= top) ||
-    (ball[k].y - ball[k].h/2 >= bottom)) 
+    (ball[k].y - ball[k].h/2 >= bottom))
   {
     return 0;
   }
@@ -640,41 +640,41 @@ int checkHitBlock(int i, int j, int k) {
   y1 = ball[k].y - (-(ball[k].x - cx)* block[i][j].h / block[i][j].w + cy);
   y2 = ball[k].y - ( (ball[k].x - cx)* block[i][j].h / block[i][j].w + cy);
 
-  if (y1 > 0) 
+  if (y1 > 0)
   {
-    if (y2 > 0) 
+    if (y2 > 0)
     {
       return 1; // y1>0 y2>0
-    } else if (y2 == 0) 
+    } else if (y2 == 0)
 
 
     {
       return 2;//y1>0 y2=0
-    } else 
+    } else
     {
       return 3;//y1>0 y2<0
     }
-  } else if (y1 < 0) 
+  } else if (y1 < 0)
   {
-    if (y2 > 0) 
+    if (y2 > 0)
     {
       return 7;//y1<0 y2>0
-    } else if (y2 == 0) 
+    } else if (y2 == 0)
     {
       return 6;//y1<0 y2=0
-    } else 
+    } else
     {
       return 5;//y1<0 y2<0
     }
-  } else 
+  } else
   {
-    if (y2 > 0) 
+    if (y2 > 0)
     {
       return 8;//y1=0 y2>0
-    } else if (y2 == 0) 
+    } else if (y2 == 0)
     {
       return -1;//y1=0 y2=0
-    } else 
+    } else
     {
       return 4;//y1=0 y2=0
     }
@@ -687,10 +687,10 @@ void Ishittoblock(int i, int j)
   int ref;
   for (int k = 0; k<3; k++)
   {
-    if (block[i][j].life > 0) 
+    if (block[i][j].life > 0)
     {
       ref = checkHitBlock(i, j, k);
-      switch (ref) 
+      switch (ref)
       {
       case 1://if(ref == 1){
         ishit(i, j);
@@ -709,7 +709,7 @@ void Ishittoblock(int i, int j)
         hit.play();
         break;
       }
-      switch (ref) 
+      switch (ref)
       {
       case 3:
         ishit(i, j);
@@ -738,19 +738,19 @@ void Ishittowall()
   for (int i = 0; i<3; i++)
   {
     // check reflection
-    if (ball[i].x + ball[i].w >= width) 
+    if (ball[i].x + ball[i].w >= width)
     {
       ball[i].dx = -ball[i].sx;
       bound.rewind();
       bound.play();
-    } else if (ball[i].x < 0) 
+    } else if (ball[i].x < 0)
     {
       ball[i].dx = ball[i].sx;
       bound.rewind();
       bound.play();
     }
 
-    if (ball[i].y + ball[i].w > height) 
+    if (ball[i].y + ball[i].w > height)
     {
       ball[i].speed = 2.0;
       ball[i].exist = false;
@@ -762,7 +762,7 @@ void Ishittowall()
         pad_w = 50.0;
         sflag = false;
       }
-      if (life == 0) 
+      if (life == 0)
       {
         ball[i].dx = 0;
         ball[i].dy = 0;
@@ -779,12 +779,12 @@ void Ishittowall()
 }
 
 
-void Ishittoracket() 
+void Ishittoracket()
 {
-  for (int i = 0; i<3; i++) 
+  for (int i = 0; i<3; i++)
   {
-    if (ball[i].x + ball[i].w/2 >= pad_x && ball[i].x -ball[i].w/2<= pad_x + pad_w && 
-      ball[i].y+ball[i].h/2>= height - 50 && ball[i].y - ball[i].h/2 <= height - 45) 
+    if (ball[i].x + ball[i].w/2 >= pad_x && ball[i].x -ball[i].w/2<= pad_x + pad_w &&
+      ball[i].y+ball[i].h/2>= height - 50 && ball[i].y - ball[i].h/2 <= height - 45)
     {
       if (ball[i].x + ball[i].w/2 >= pad_x && ball[i].x + ball[i].w/2 < pad_x + pad_w/6)//1/6
       {

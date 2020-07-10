@@ -47,7 +47,7 @@ class item
     }
     rectMode(CORNER);
     textAlign(LEFT);
-    if (item.x + 15.0/2 >= pad_x && item.x -15.0/2<= pad_x + pad_w && 
+    if (item.x + 15.0/2 >= pad_x && item.x -15.0/2<= pad_x + pad_w &&
       item.y+15.0/2>= height - 50 && item.y - 15.0/2 <= height - 45) //itemがパッドに触れたとき
     {
       exist =false;
@@ -66,7 +66,7 @@ class item
       case 2:
         for (int i = 0; i<3; i++)
         {
-          ball[i].exist = true; 
+          ball[i].exist = true;
           ball[i].dx = ball[0].dx;
           ball[i].dy = ball[0].dy;
           ball[i].x = ball[0].x;

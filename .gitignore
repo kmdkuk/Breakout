@@ -1,0 +1,27 @@
+### https://raw.github.com/github/gitignore/36ce3a894d9ddff2916bc98d71380aa7167ff1d7/Global/VisualStudioCode.gitignore
+
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+
+### https://raw.github.com/github/gitignore/36ce3a894d9ddff2916bc98d71380aa7167ff1d7/Processing.gitignore
+
+.DS_Store
+applet
+application.linux-arm64
+application.linux-armv6hf
+application.linux32
+application.linux64
+application.windows32
+application.windows64
+application.macosx
+out
+
+

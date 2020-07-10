@@ -12,7 +12,7 @@ class block
   void update()
   {
     if (life > 0)
-    {  
+    {
       fill(255);
       rect(x, y, w, h);
     }

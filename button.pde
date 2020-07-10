@@ -4,7 +4,8 @@ class button
   float size;
   String text;
   boolean exist = false;
-  button(String s, float si, float a, float b, float c, float d)//ボタンの文字,x座標,y座標,幅,高さ
+  //ボタンの文字,x座標,y座標,幅,高さ
+  button(String s, float si, float a, float b, float c, float d)
   {
     text = s;
     size = si;
