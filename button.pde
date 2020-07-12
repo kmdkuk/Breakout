@@ -18,7 +18,7 @@ class button
   void update()
   {
     exist = true;
-    if (Isonbutton())
+    if (isOnMouse())
     {
       fill(0, 255, 0);
     } else
@@ -33,7 +33,7 @@ class button
     textAlign(LEFT);
   }
 
-  boolean Isonbutton()
+  boolean isOnMouse()
   {
     if (exist)
     {
