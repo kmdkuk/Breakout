@@ -22,11 +22,11 @@ class Game {
     stage = 1;
     setstage();
     for (int i = 0; i < 3; i++) {
-      ball[i].exist = false;
+      Globals.ball[i].exist = false;
     }
-    ball[0].exist = true;
-    ball[0].dx = ball[0].sx;
-    ball[0].dy = -ball[0].sy;
+    Globals.ball[0].exist = true;
+    Globals.ball[0].dx = Globals.ball[0].sx;
+    Globals.ball[0].dy = -Globals.ball[0].sy;
     pad_w = 50.0;
     padstatus = 0;
     life = 3;
@@ -36,11 +36,11 @@ class Game {
     stage++;      //次のステージへ
     //いろいろの初期化
     for (int i = 0; i < 3; i++) {
-      ball[i].exist = false;
+      Globals.ball[i].exist = false;
     }
-    ball[0].exist = true;
-    ball[0].dx = ball[0].sx;
-    ball[0].dy = -ball[0].sy;
+    Globals.ball[0].exist = true;
+    Globals.ball[0].dx = Globals.ball[0].sx;
+    Globals.ball[0].dy = -Globals.ball[0].sy;
     pad_w = 50.0;
     padstatus = 0;
     item.exist = false;
@@ -49,30 +49,30 @@ class Game {
     isStart = false;
   }
 
-  MODE draw() {
+  Mode update() {
     background(0);
     drawInfo();
     int count = 0;
     for (int i = 0; i < 3; i++) {
-      if (ball[i].exist == true) {
+      if (Globals.ball[i].exist == true) {
         count += 1;
       }
     }
     if (count == 1) {
       for (int i = 0; i < 3; i++) {
-        if (ball[i].exist == true) {
-          ball[0].x = ball[i].x;
-          ball[0].y = ball[i].y;
-          ball[0].sx = ball[i].sx;
-          ball[0].sy = ball[i].sy;
-          ball[0].speed = ball[i].speed;
-          ball[i].exist = false;
-          ball[0].exist = true;
+        if (Globals.ball[i].exist == true) {
+          Globals.ball[0].x = Globals.ball[i].x;
+          Globals.ball[0].y = Globals.ball[i].y;
+          Globals.ball[0].sx = Globals.ball[i].sx;
+          Globals.ball[0].sy = Globals.ball[i].sy;
+          Globals.ball[0].speed = Globals.ball[i].speed;
+          Globals.ball[i].exist = false;
+          Globals.ball[0].exist = true;
         }
       }
     }
     for (int i = 0; i < 3; i++) {
-      ball[i].update(isStart);
+      Globals.ball[i].update(isStart);
     }
     for (int i = 0; i < 3; i++) {
       if (l[i].exist == true) {
@@ -113,19 +113,19 @@ class Game {
     {
       if (stage < Stage.finalStage)
       {
-        return MODE.NEXT_STAGE;
+        return Mode.NEXT_STAGE;
       }
-      return MODE.CLEAR;
+      return Mode.CLEAR;
     }
 
     if (life == 0) {
-      // ball[i].dx = 0;
-      // ball[i].dy = 0;
+      // Globals.ball[i].dx = 0;
+      // Globals.ball[i].dy = 0;
       isStart = false;
-      // mode = 4; //ゲームオーバー画面へ
-      return MODE.OVER;
+      // Mode = 4; //ゲームオーバー画面へ
+      return Mode.OVER;
     }
-    return MODE.GAME;
+    return Mode.GAME;
   }
 
   void drawInfo() {
@@ -204,15 +204,15 @@ class Game {
     float cy = top + block[i][j].h / 2;
     float y1, y2;
 
-    if ((ball[k].x + ball[k].w / 2 <= left) ||
-      (ball[k].x - ball[k].w / 2 >= right) ||
-      (ball[k].y + ball[k].h / 2 <= top) ||
-      (ball[k].y - ball[k].h / 2 >= bottom)) {
+    if ((Globals.ball[k].x + Globals.ball[k].w / 2 <= left) ||
+      (Globals.ball[k].x - Globals.ball[k].w / 2 >= right) ||
+      (Globals.ball[k].y + Globals.ball[k].h / 2 <= top) ||
+      (Globals.ball[k].y - Globals.ball[k].h / 2 >= bottom)) {
       return 0;
     }
 
-    y1 = ball[k].y - (-(ball[k].x - cx) * block[i][j].h / block[i][j].w + cy);
-    y2 = ball[k].y - ((ball[k].x - cx) * block[i][j].h / block[i][j].w + cy);
+    y1 = Globals.ball[k].y - (-(Globals.ball[k].x - cx) * block[i][j].h / block[i][j].w + cy);
+    y2 = Globals.ball[k].y - ((Globals.ball[k].x - cx) * block[i][j].h / block[i][j].w + cy);
 
     if (y1 > 0) {
       if (y2 > 0) {
@@ -253,13 +253,13 @@ class Game {
           isHit(i, j);
         case 2: // if( ref == 2){   }
         case 8:
-          ball[k].dy = ball[k].sy;
+          Globals.ball[k].dy = Globals.ball[k].sy;
           break;
         case 5:
           isHit(i, j);
         case 4:
         case 6:
-          ball[k].dy = -ball[k].sy;
+          Globals.ball[k].dy = -Globals.ball[k].sy;
           break;
         }
         switch (ref) {
@@ -267,13 +267,13 @@ class Game {
           isHit(i, j);
         case 2:
         case 4:
-          ball[k].dx = ball[k].sx;
+          Globals.ball[k].dx = Globals.ball[k].sx;
           break;
         case 7:
           isHit(i, j);
         case 6:
         case 8:
-          ball[k].dx = -ball[k].sx;
+          Globals.ball[k].dx = -Globals.ball[k].sx;
           break;
         }
       }
@@ -283,76 +283,76 @@ class Game {
   void isHitToWall() {
     for (int i = 0; i < 3; i++) {
       // check reflection
-      if (ball[i].x + ball[i].w >= width) {
-        ball[i].dx = -ball[i].sx;
-      } else if (ball[i].x < 0) {
-        ball[i].dx = ball[i].sx;
+      if (Globals.ball[i].x + Globals.ball[i].w >= width) {
+        Globals.ball[i].dx = -Globals.ball[i].sx;
+      } else if (Globals.ball[i].x < 0) {
+        Globals.ball[i].dx = Globals.ball[i].sx;
       }
 
-      if (ball[i].y + ball[i].w > height) {
-        ball[i].speed = 2.0;
-        ball[i].exist = false;
-        if (ball[0].exist == false && ball[1].exist == false &&
-          ball[2].exist == false) //一気に-3
+      if (Globals.ball[i].y + Globals.ball[i].w > height) {
+        Globals.ball[i].speed = 2.0;
+        Globals.ball[i].exist = false;
+        if (Globals.ball[0].exist == false && Globals.ball[1].exist == false &&
+          Globals.ball[2].exist == false) //一気に-3
         {
           life--;
-          ball[0].exist = true;
+          Globals.ball[0].exist = true;
           padstatus = 0;
           pad_w = 50.0;
           isStart = false;
         }
-      } else if (ball[i].y < 60) //上
+      } else if (Globals.ball[i].y < 60) //上
       {
-        ball[i].dy = ball[i].sy;
+        Globals.ball[i].dy = Globals.ball[i].sy;
       }
     }
   }
 
   void isHitToRacket() {
     for (int i = 0; i < 3; i++) {
-      if (ball[i].x + ball[i].w / 2 >= pad_x &&
-        ball[i].x - ball[i].w / 2 <= pad_x + pad_w &&
-        ball[i].y + ball[i].h / 2 >= height - 50 &&
-        ball[i].y - ball[i].h / 2 <= height - 45) {
-        if (ball[i].x + ball[i].w / 2 >= pad_x &&
-          ball[i].x + ball[i].w / 2 < pad_x + pad_w / 6) // 1/6
+      if (Globals.ball[i].x + Globals.ball[i].w / 2 >= pad_x &&
+        Globals.ball[i].x - Globals.ball[i].w / 2 <= pad_x + pad_w &&
+        Globals.ball[i].y + Globals.ball[i].h / 2 >= height - 50 &&
+        Globals.ball[i].y - Globals.ball[i].h / 2 <= height - 45) {
+        if (Globals.ball[i].x + Globals.ball[i].w / 2 >= pad_x &&
+          Globals.ball[i].x + Globals.ball[i].w / 2 < pad_x + pad_w / 6) // 1/6
         {
-          ball[i].anglex = cos(radians(30));
-          ball[i].angley = sin(radians(30));
-          ball[i].dx = -ball[i].sx;
-        } else if (ball[i].x + ball[i].w / 2 >= pad_x + pad_w / 6 &&
-          ball[i].x + ball[i].w / 2 < pad_x + pad_w * 2 / 6) // 2/6
+          Globals.ball[i].anglex = cos(radians(30));
+          Globals.ball[i].angley = sin(radians(30));
+          Globals.ball[i].dx = -Globals.ball[i].sx;
+        } else if (Globals.ball[i].x + Globals.ball[i].w / 2 >= pad_x + pad_w / 6 &&
+          Globals.ball[i].x + Globals.ball[i].w / 2 < pad_x + pad_w * 2 / 6) // 2/6
         {
-          ball[i].anglex = cos(radians(45));
-          ball[i].angley = sin(radians(45));
-          ball[i].dx = -ball[i].sx;
-        } else if (ball[i].x + ball[i].w / 2 >= pad_x + pad_w * 2 / 6 &&
-          ball[i].x < pad_x + pad_w * 3 / 6) // 3/6
+          Globals.ball[i].anglex = cos(radians(45));
+          Globals.ball[i].angley = sin(radians(45));
+          Globals.ball[i].dx = -Globals.ball[i].sx;
+        } else if (Globals.ball[i].x + Globals.ball[i].w / 2 >= pad_x + pad_w * 2 / 6 &&
+          Globals.ball[i].x < pad_x + pad_w * 3 / 6) // 3/6
         {
-          ball[i].anglex = cos(radians(60));
-          ball[i].angley = sin(radians(60));
-          ball[i].dx = -ball[i].sx;
-        } else if (ball[i].x >= pad_x + pad_w * 3 / 6 &&
-          ball[i].x - ball[i].w / 2 < pad_x + pad_w * 4 / 6) // 4/6
+          Globals.ball[i].anglex = cos(radians(60));
+          Globals.ball[i].angley = sin(radians(60));
+          Globals.ball[i].dx = -Globals.ball[i].sx;
+        } else if (Globals.ball[i].x >= pad_x + pad_w * 3 / 6 &&
+          Globals.ball[i].x - Globals.ball[i].w / 2 < pad_x + pad_w * 4 / 6) // 4/6
         {
-          ball[i].anglex = cos(radians(60));
-          ball[i].angley = sin(radians(60));
-          ball[i].dx = ball[i].sx;
-        } else if (ball[i].x - ball[i].w / 2 >= pad_x + pad_w * 4 / 6 &&
-          ball[i].x - ball[i].w / 2 < pad_x + pad_w * 5 / 6) // 5/6
+          Globals.ball[i].anglex = cos(radians(60));
+          Globals.ball[i].angley = sin(radians(60));
+          Globals.ball[i].dx = Globals.ball[i].sx;
+        } else if (Globals.ball[i].x - Globals.ball[i].w / 2 >= pad_x + pad_w * 4 / 6 &&
+          Globals.ball[i].x - Globals.ball[i].w / 2 < pad_x + pad_w * 5 / 6) // 5/6
         {
-          ball[i].anglex = cos(radians(45));
-          ball[i].angley = sin(radians(45));
-          ball[i].dx = ball[i].sx;
-        } else if (ball[i].x - ball[i].w / 2 >= pad_x + pad_w * 5 / 6 &&
-          ball[i].x - ball[i].w / 2 < pad_x + pad_w) //一番右
+          Globals.ball[i].anglex = cos(radians(45));
+          Globals.ball[i].angley = sin(radians(45));
+          Globals.ball[i].dx = Globals.ball[i].sx;
+        } else if (Globals.ball[i].x - Globals.ball[i].w / 2 >= pad_x + pad_w * 5 / 6 &&
+          Globals.ball[i].x - Globals.ball[i].w / 2 < pad_x + pad_w) //一番右
         {
-          ball[i].anglex = cos(radians(30));
-          ball[i].angley = sin(radians(30));
-          ball[i].dx = ball[i].sx;
+          Globals.ball[i].anglex = cos(radians(30));
+          Globals.ball[i].angley = sin(radians(30));
+          Globals.ball[i].dx = Globals.ball[i].sx;
         }
-        ball[i].supdate();
-        ball[i].dy = -ball[i].sy;
+        Globals.ball[i].supdate();
+        Globals.ball[i].dy = -Globals.ball[i].sy;
       }
     }
   }
@@ -362,7 +362,7 @@ class Game {
     block[i][j].life--;
     score += 100 * rate;
     for (int k = 0; k < 3; k++) {
-      ball[k].speed += 0.05;
+      Globals.ball[k].speed += 0.05;
     }
     if (!(item.exist)) {
       item.exist = item.generate(i, j);
@@ -371,7 +371,7 @@ class Game {
   ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-  void mouseClicked() {
+  void clicked() {
     if (!(isStart)) {
       isStart = true;
       return;

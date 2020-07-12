@@ -115,7 +115,7 @@ class Title {
     }
   }
 
-  void draw() {
+  void update() {
     boundrect();
     dnow++;
     println(dnow);
@@ -170,11 +170,11 @@ class Title {
     }
   }
 
-  MODE mouseClicked() {
+  Mode clicked() {
     if (start.isOnMouse()) {
       start.exist = false;
-      return MODE.GAME;
+      return Mode.GAME;
     }
-    return MODE.TITLE;
+    return Mode.TITLE;
   }
 }

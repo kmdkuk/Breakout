@@ -1,6 +1,6 @@
 class Clear {
   Button totitle = new Button("T I T L E", 50, 200, 550, 200, 50);
-  void draw() {
+  void update() {
     background(0);
     fill(255);
     textAlign(CENTER);
@@ -10,11 +10,11 @@ class Clear {
     textAlign(LEFT);
   }
 
-  MODE mouseClicked() {
+  Mode clicked() {
     if (totitle.isOnMouse()) {
       totitle.exist = false;
-      return MODE.TITLE;
+      return Mode.TITLE;
     }
-    return MODE.CLEAR;
+    return Mode.CLEAR;
   }
 }

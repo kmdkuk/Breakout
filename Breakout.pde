@@ -1,7 +1,7 @@
 //1015047  鎌田幸希
 int life = 3;
 
-Ball ball[] = new Ball[3];
+Ball Globals.ball[] = new Globals.ball[3];
 
 Block[][] block = new Block[int(Globals.block_height)][int(Globals.block_width)];
 int[][] b = new int[12][13];
@@ -27,19 +27,19 @@ void setup() {
 
   for (int i = 0; i < 3; i++) {
     l[i] = new Laser();
-    ball[i] = new Ball();
+    Globals.ball[i] = new Ball();
   }
   m = new Main();
 }
 
-void draw() {
-  m.draw();
+void update() {
+  m.update();
 }
 
 //クリック時
 //基本モード変更
-void mouseClicked() {
-  m.mouseClicked();
+void clicked() {
+  m.clicked();
 }
 
 void stop() {

@@ -1,30 +1,30 @@
 class Main {
-  MODE prevMode;
-  MODE mode;
+  Mode prevMode;
+  Mode Mode;
   Title title;
   Game game;
   NextStage nextStage;
   Clear clear;
   Over over;
   Main() {
-    prevMode = MODE.TITLE;
-    mode = MODE.TITLE;
+    prevMode = Mode.TITLE;
+    Mode = Mode.TITLE;
     title = new Title();
     game = new Game();
     nextStage = new NextStage();
     clear = new Clear();
     over = new Over();
   }
-  void draw() {
-    switch (mode) {
+  void update() {
+    switch (Mode) {
     case TITLE:
-      if (prevMode != MODE.TITLE) {
+      if (prevMode != Mode.TITLE) {
         println("title.init();");
         title.init();
       }
-      prevMode = mode;
+      prevMode = Mode;
       background(0);
-      title.draw();
+      title.update();
       break;
     case GAME:
       switch(prevMode) {
@@ -35,17 +35,17 @@ class Main {
         game.nextInit();
         break;
       }
-      prevMode = mode;
-      mode = game.draw();
+      prevMode = Mode;
+      Mode = game.update();
       break;
     case NEXT_STAGE:
-      nextStage.draw();
+      nextStage.update();
       break;
     case CLEAR:
-      clear.draw();
+      clear.update();
       break;
     case OVER:
-      over.draw();
+      over.update();
       break;
     }
     /*0:titledraw
@@ -55,26 +55,26 @@ class Main {
      4:ゲームオーバー画面
      */
   }
-  void mouseClicked() {
-    switch (mode) {
+  void clicked() {
+    switch (Mode) {
     case TITLE:
-      prevMode = mode;
-      mode = title.mouseClicked();
+      prevMode = Mode;
+      Mode = title.clicked();
       break;
     case GAME:
-      game.mouseClicked();
+      game.clicked();
       break;
     case NEXT_STAGE:
-      prevMode = mode;
-      mode = nextStage.mouseClicked();
+      prevMode = Mode;
+      Mode = nextStage.clicked();
       break;
     case CLEAR:
-      prevMode = mode;
-      mode = clear.mouseClicked();
+      prevMode = Mode;
+      Mode = clear.clicked();
       break;
     case OVER:
-      prevMode = mode;
-      mode = over.mouseClicked();
+      prevMode = Mode;
+      Mode = over.clicked();
       break;
     }
   }

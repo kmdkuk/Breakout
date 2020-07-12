@@ -57,18 +57,18 @@ class Item
       case 0:
         for (int i = 0; i<3; i++)
         {
-          ball[i].speed -= 1.0;
+          Globals.ball[i].speed -= 1.0;
         }
         break;
       case 1:
       case 2:
         for (int i = 0; i<3; i++)
         {
-          ball[i].exist = true;
-          ball[i].dx = ball[0].dx;
-          ball[i].dy = ball[0].dy;
-          ball[i].x = ball[0].x;
-          ball[i].y = ball[0].y;
+          Globals.ball[i].exist = true;
+          Globals.ball[i].dx = Globals.ball[0].dx;
+          Globals.ball[i].dy = Globals.ball[0].dy;
+          Globals.ball[i].x = Globals.ball[0].x;
+          Globals.ball[i].y = Globals.ball[0].y;
         }
         active = false;
         break;
@@ -101,7 +101,7 @@ class Item
         case 0:
           for (int i = 0; i<3; i++)
           {
-            ball[i].speed += 1.0;
+            Globals.ball[i].speed += 1.0;
           }
           break;
         case 3:
@@ -145,7 +145,7 @@ class Item
         int count = 0;
         for (int s = 0; s<3; s++)
         {
-          if (ball[s].exist == true)
+          if (Globals.ball[s].exist == true)
           {
             count += 1;
           }

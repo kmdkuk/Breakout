@@ -1,7 +1,7 @@
 class NextStage {
 
   Button next = new Button("N E X T", 50, 200, 550, 200, 50);
-  void draw() {
+  void update() {
 
     background(0);
     fill(255);
@@ -11,12 +11,12 @@ class NextStage {
     next.update();
   }
   
-  MODE mouseClicked(){
+  Mode clicked(){
    
     if (next.isOnMouse()) {
       next.exist = false;
-      return MODE.GAME;
+      return Mode.GAME;
     }
-    return MODE.NEXT_STAGE;
+    return Mode.NEXT_STAGE;
   }
 }
