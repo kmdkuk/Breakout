@@ -1,25 +1,45 @@
-class main {
+class Main {
+  MODE prevMode;
   MODE mode;
   Title title;
   Game game;
+  NextStage nextStage;
   Clear clear;
   Over over;
-  main(){
+  Main() {
+    prevMode = MODE.TITLE;
     mode = MODE.TITLE;
     title = new Title();
     game = new Game();
+    nextStage = new NextStage();
     clear = new Clear();
     over = new Over();
   }
   void draw() {
     switch (mode) {
     case TITLE:
+      if (prevMode != MODE.TITLE) {
+        println("title.init();");
+        title.init();
+      }
+      prevMode = mode;
       background(0);
-      // boundrect();
       title.draw();
       break;
     case GAME:
-      game.draw();
+      switch(prevMode) {
+      case TITLE:
+        game.init();
+        break;
+      case NEXT_STAGE:
+        game.nextInit();
+        break;
+      }
+      prevMode = mode;
+      mode = game.draw();
+      break;
+    case NEXT_STAGE:
+      nextStage.draw();
       break;
     case CLEAR:
       clear.draw();
@@ -36,20 +56,26 @@ class main {
      */
   }
   void mouseClicked() {
-    switch (mode){
-      case TITLE:
-        mode = title.mouseClicked();
-        break;
-      case GAME:
-        game.mouseClicked();
-        break;
-      case CLEAR:
-        mode = clear.mouseClicked();
-        break;
-      case OVER:
-        mode = over.mouseClicked();
-        break;
+    switch (mode) {
+    case TITLE:
+      prevMode = mode;
+      mode = title.mouseClicked();
+      break;
+    case GAME:
+      game.mouseClicked();
+      break;
+    case NEXT_STAGE:
+      prevMode = mode;
+      mode = nextStage.mouseClicked();
+      break;
+    case CLEAR:
+      prevMode = mode;
+      mode = clear.mouseClicked();
+      break;
+    case OVER:
+      prevMode = mode;
+      mode = over.mouseClicked();
+      break;
     }
-    
   }
 }

@@ -1,11 +1,11 @@
-class button
+class Button
 {
   float x, y, w, h;
   float size;
   String text;
   boolean exist = false;
   //ボタンの文字,x座標,y座標,幅,高さ
-  button(String s, float si, float a, float b, float c, float d)
+  Button(String s, float si, float a, float b, float c, float d)
   {
     text = s;
     size = si;

@@ -1,6 +1,7 @@
-class stage
+static class Stage
 {
-  int stage1[][] = {
+  static final int finalStage = 2;
+  static final int stage1[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -50,7 +51,7 @@ class stage
     }
   };
 
-  int stage2[][] = {
+  static final int stage2[][] = {
     {
       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
     }
@@ -100,7 +101,7 @@ class stage
     }
   };
 
-  int stage3[][] = {
+  static final int stage3[][] = {
     {
       0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
     }
@@ -150,7 +151,7 @@ class stage
     }
   };
 
-  int stage4[][] = {
+  static final int stage4[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -200,7 +201,7 @@ class stage
     }
   };
 
-  int stage5[][] = {
+  static final int stage5[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -250,7 +251,7 @@ class stage
     }
   };
 
-  int stage6[][] = {
+  static final int stage6[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -300,7 +301,7 @@ class stage
     }
   };
 
-  int stage7[][] = {
+  static final int stage7[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -350,7 +351,7 @@ class stage
     }
   };
 
-  int stage8[][] = {
+  static final int stage8[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -400,7 +401,7 @@ class stage
     }
   };
 
-  int stage9[][] = {
+  static final int stage9[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -450,7 +451,7 @@ class stage
     }
   };
 
-  int stage10[][] = {
+  static final int stage10[][] = {
     {
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
@@ -499,7 +500,7 @@ class stage
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     }
   };
-  stage()
+  Stage()
   {
   }
 }

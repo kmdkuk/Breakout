@@ -1,11 +1,25 @@
 class Game {
   boolean isStart;
 
-  button next = new button("N E X T", 50, 200, 550, 200, 50);
+  int stage = 1; //ステージ数1~10
+
+  boolean cflag = false;
+
+  Button next = new Button("N E X T", 50, 200, 550, 200, 50);
 
   Game() {
-    isStart = false;
+    for (int i = 0; i < Globals.block_height; i++) {
+      for (int j = 0; j < Globals.block_width; j++) {
+        block[i][j] = new Block(i, j);
+        block[i][j].life = 1;
+      }
+    }
+    init();
+  }
 
+  void init() {
+    isStart = false;
+    stage = 1;
     setstage();
     for (int i = 0; i < 3; i++) {
       ball[i].exist = false;
@@ -17,6 +31,24 @@ class Game {
     padstatus = 0;
     life = 3;
   }
+
+  void nextInit() {
+    stage++;      //次のステージへ
+    //いろいろの初期化
+    for (int i = 0; i < 3; i++) {
+      ball[i].exist = false;
+    }
+    ball[0].exist = true;
+    ball[0].dx = ball[0].sx;
+    ball[0].dy = -ball[0].sy;
+    pad_w = 50.0;
+    padstatus = 0;
+    item.exist = false;
+    //ブロックの配置
+    setstage();
+    isStart = false;
+  }
+
   MODE draw() {
     background(0);
     drawInfo();
@@ -47,8 +79,8 @@ class Game {
         l[i].update();
       }
     }
-    for (int i = 0; i < globals.block_height; i++) {
-      for (int j = 0; j < globals.block_width; j++) {
+    for (int i = 0; i < Globals.block_height; i++) {
+      for (int j = 0; j < Globals.block_width; j++) {
         isHitToBlock(i, j);
         block[i][j].update();
       }
@@ -72,14 +104,26 @@ class Game {
     }
 
     int clear = 0;
-    for (int i = 0; i < globals.block_height; i++) {
-      for (int j = 0; j < globals.block_width; j++) {
+    for (int i = 0; i < Globals.block_height; i++) {
+      for (int j = 0; j < Globals.block_width; j++) {
         clear = clear + block[i][j].life;
       }
     }
     if (clear == 0) //すべてのブロックを壊したとき
     {
+      if (stage < Stage.finalStage)
+      {
+        return MODE.NEXT_STAGE;
+      }
       return MODE.CLEAR;
+    }
+
+    if (life == 0) {
+      // ball[i].dx = 0;
+      // ball[i].dy = 0;
+      isStart = false;
+      // mode = 4; //ゲームオーバー画面へ
+      return MODE.OVER;
     }
     return MODE.GAME;
   }
@@ -93,7 +137,7 @@ class Game {
     text("item", width * 2 / 3, 30);
     textAlign(LEFT);
     fill(255);
-    text("STAGE:" + s, 0, 40);
+    text("STAGE:" + stage, 0, 40);
     rect(0, 54, width, 6);
   }
 
@@ -104,6 +148,49 @@ class Game {
     } else if (padstatus == 1) {
       fill(255, 0, 0);
       rect(pad_x, height - 50, pad_w, 5);
+    }
+  }
+
+  void setstage() {
+    switch (stage) {
+    case 1:
+      b = Stage.stage1;
+      break;
+    case 2:
+      b = Stage.stage2;
+      break;
+    case 3:
+      b = Stage.stage3;
+      break;
+    case 4:
+      b = Stage.stage4;
+      break;
+    case 5:
+      b = Stage.stage5;
+      break;
+    case 6:
+      b = Stage.stage6;
+      break;
+    case 7:
+      b = Stage.stage7;
+      break;
+    case 8:
+      b = Stage.stage8;
+      break;
+    case 9:
+      b = Stage.stage9;
+      break;
+    case 10:
+      b = Stage.stage10;
+      break;
+    }
+    for (int i = 0; i < Globals.block_height; i++) {
+      for (int j = 0; j < Globals.block_width; j++) {
+        block[i][j].life = 0;
+        if (b[i][j] == 1) {
+          block[i][j].life = 1;
+        }
+      }
     }
   }
 
@@ -214,12 +301,6 @@ class Game {
           pad_w = 50.0;
           isStart = false;
         }
-        if (life == 0) {
-          ball[i].dx = 0;
-          ball[i].dy = 0;
-          isStart = false;
-          // mode = 4; //ゲームオーバー画面へ
-        }
       } else if (ball[i].y < 60) //上
       {
         ball[i].dy = ball[i].sy;
@@ -307,25 +388,6 @@ class Game {
           break;
         }
       }
-    }
-
-
-    if (next.isOnMouse()) {
-      s++;      //次のステージへ
-      //いろいろの初期化
-      for (int i = 0; i < 3; i++) {
-        ball[i].exist = false;
-      }
-      ball[0].exist = true;
-      ball[0].dx = ball[0].sx;
-      ball[0].dy = -ball[0].sy;
-      pad_w = 50.0;
-      padstatus = 0;
-      item.exist = false;
-      //ブロックの配置
-      setstage();
-      isStart = false;
-      next.exist = false;
     }
   }
 }

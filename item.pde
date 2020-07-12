@@ -1,4 +1,4 @@
-class item
+class Item
 {
   float x, y;
   boolean exist = false;
@@ -14,9 +14,7 @@ class item
   boolean cflag = false;
   int count = 0;
   boolean active = false;
-  item()
-  {
-  }
+  
   void update()
   {
     if (!(exist))return; //itemが存在しないなら

@@ -1,4 +1,4 @@
-class ball
+class Ball
 {
   float x;
   float y;
@@ -14,7 +14,7 @@ class ball
   boolean exist = false;
 
 
-  ball()
+  Ball()
   {
   }
   void update(boolean sflag)
